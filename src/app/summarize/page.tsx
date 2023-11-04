@@ -3,7 +3,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import OpenAI from "openai";
 
 export default function summarizePage() {
   const [summary, setSummary] = useState("");
@@ -12,8 +11,9 @@ export default function summarizePage() {
     toast.success("Summarizing...");
     const urlParams = new URLSearchParams(window.location.search);
     const ytUrl = urlParams.get("ytUrl");
+    const videoId = ytUrl?.split("v=")[1];
     const getSummary = async () => {
-      const res = await axios.post("/api/summarize", { ytUrl });
+      const res = await axios.post("/api/summarize", { videoId });
       setSummary(res.data.summary);
     };
     getSummary();
