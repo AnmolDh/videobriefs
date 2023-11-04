@@ -29,7 +29,18 @@ export async function POST(req: NextRequest) {
       model: "gpt-3.5-turbo",
     });
 
-    const res = JSON.parse(completion.choices[0].message.content || "");
+    const messageContent = completion.choices[0].message.content;
+    let res = null;
+    if (messageContent) {
+      try {
+        res = JSON.parse(messageContent);
+      } catch (error) {
+        return NextResponse.json(
+          { message: "Invalid response from OpenAI" },
+          { status: 500 }
+        );
+      }
+    }
 
     return NextResponse.json(res, { status: 200 });
   } catch (error: any) {
