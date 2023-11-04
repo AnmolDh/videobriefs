@@ -3,6 +3,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import OpenAI from "openai";
 
 export default function summarizePage() {
   const [summary, setSummary] = useState("");
