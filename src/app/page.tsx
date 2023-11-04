@@ -25,7 +25,7 @@ const handleSubmit = async () => {
 
   return (
     <main
-      className="min-h-screen flex flex-col items-center px-10"
+      className="min-h-screen flex flex-col items-center lg:px-10"
       style={{
         backgroundImage: `url('bg.svg')`,
         backgroundSize: "contain",
@@ -40,7 +40,7 @@ const handleSubmit = async () => {
         <h1 className="font-bold text-2xl">VideoBriefs</h1>
       </div>
       <div className="text-center flex flex-col flex-1 pt-32 items-center">
-        <h1 className="font-bold text-5xl lg:text-7xl">
+        <h1 className="font-bold text-5xl lg:text-7xl lg:px-10">
           Don't Want to Watch the Whole Video? - Try VideoBriefs!
         </h1>
         <form
@@ -52,7 +52,7 @@ const handleSubmit = async () => {
         >
           <input
             type="text"
-            className="border bg-black rounded-3xl text-white text-xl p-2 mt-14 text-center w-full"
+            className="border bg-black rounded-3xl text-white text-xl p-2 mt-14 text-center lg:w-full"
             placeholder="YouTube URL"
             name="url"
             value={ytUrl}
