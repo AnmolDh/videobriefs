@@ -5,23 +5,23 @@ import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function summarizePage() {
-  const [summary, setSummary] = useState("");
+  const [data, setData] = useState({title: "", summary: ""});
 
   useEffect(() => {
     toast.success("Summarizing...");
     const urlParams = new URLSearchParams(window.location.search);
-    const ytUrl = urlParams.get("ytUrl");
-    const videoId = ytUrl?.split("v=")[1];
-    const getSummary = async () => {
+    const videoId = urlParams.get("videoId");
+    const getData = async () => {
       const res = await axios.post("/api/summarize", { videoId });
-      setSummary(res.data.summary);
+      setData(res.data);
     };
-    getSummary();
+    getData();
   }, []);
   return (
     <main className="min-h-screen">
       <Toaster />
-      <h1>{summary ? summary : "please wait"}</h1>
+      <h1 className="text-4xl font-bold">{data ? data.title : "please wait"}</h1>
+      <h1>{data.summary}</h1>
     </main>
   );
 }

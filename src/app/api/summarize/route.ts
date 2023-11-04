@@ -6,7 +6,7 @@ export async function POST(req: NextRequest) {
   try {
     const reqBody = await req.json();
     const { videoId } = reqBody;
-    
+
     const youtube = new Client();
     const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY || "" });
 
@@ -18,7 +18,10 @@ export async function POST(req: NextRequest) {
       ts += item.text + " ";
     });
 
-    return NextResponse.json({ summary: ts }, { status: 200 });
+    return NextResponse.json(
+      { title: video?.title, summary: ts },
+      { status: 200 }
+    );
 
     // const completion = await openai.chat.completions.create({
     //   messages: [

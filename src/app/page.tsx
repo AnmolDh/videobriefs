@@ -10,7 +10,8 @@ export default function Home() {
 
   const handleSubmit = async () => {
     try {
-      router.push(`/summarize?ytUrl=${ytUrl}`);
+      const videoId = ytUrl?.split("v=")[1];
+      router.push(`/summarize?videoId=${videoId}`);
     } catch (error: any) {
       toast.error("Something Went Wrong!");
     }
@@ -27,7 +28,7 @@ export default function Home() {
         backgroundColor: "white",
       }}
     >
-      <Toaster/>
+      <Toaster />
       <div className="flex flex-col justify-center items-center pt-10">
         <img src="logo.svg" width={50} alt="logo"></img>
         <h1 className="font-bold text-2xl">VideoBriefs</h1>
