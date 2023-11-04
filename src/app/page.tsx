@@ -34,7 +34,7 @@ export default function Home() {
       </div>
       <div className="text-center flex flex-col flex-1 pt-32 items-center">
         <h1 className="font-bold text-5xl lg:text-7xl">
-          Don't Watch the Whole Video - Try VideoBriefs!
+          Don't Want to Watch the Whole Video? - Try VideoBriefs!
         </h1>
         <input
           type="text"
