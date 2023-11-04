@@ -1,11 +1,19 @@
 "use client";
 
+import axios from "axios";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function Home() {
   const [ytUrl, setYtUrl] = useState("");
 
-  const handleSubmit = async () => {};
+  const handleSubmit = async () => {
+    try {
+      await axios.post("/api/summarizer", { ytUrl });
+    } catch (error: any) {
+      toast.error("Something Went Wrong!");
+    }
+  };
 
   return (
     <main
