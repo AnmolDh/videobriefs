@@ -11,7 +11,7 @@ export default function Home() {
 
 const handleSubmit = async () => {
   try {
-    if (!ytUrl.includes("youtube") || !ytUrl.includes("youtu.be")) {
+    if (!ytUrl.includes("youtube") && !ytUrl.includes("youtu.be")) {
       toast.error("Invalid YouTube URL!");
       return;
     }
