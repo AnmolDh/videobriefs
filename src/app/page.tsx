@@ -11,6 +11,10 @@ export default function Home() {
 
 const handleSubmit = async () => {
   try {
+    if (!ytUrl.includes("youtube") || !ytUrl.includes("youtu.be")) {
+      toast.error("Invalid YouTube URL!");
+      return;
+    }
     let videoId = "";
     if (ytUrl.includes("youtu.be")) {
       videoId = ytUrl.split("youtu.be/")[1].split("?")[0];
