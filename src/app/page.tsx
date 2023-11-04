@@ -5,9 +5,7 @@ import { useState } from "react";
 export default function Home() {
   const [ytUrl, setYtUrl] = useState("");
 
-  const handleSubmit = async () => {
-    
-  }
+  const handleSubmit = async () => {};
 
   return (
     <main
@@ -25,17 +23,23 @@ export default function Home() {
         <h1 className="font-bold text-2xl">VideoBriefs</h1>
       </div>
       <div className="text-center flex flex-col flex-1 pt-32 items-center">
-        <h1 className="font-bold text-7xl">
+        <h1 className="font-bold text-5xl lg:text-7xl">
           Don't Watch the Whole Video - Try VideoBriefs!
         </h1>
         <input
           type="text"
-          className="border-2 border-black"
+          className="border bg-black rounded text-white text-xl p-2 mt-14 text-center"
+          placeholder="YouTube URL"
           name="url"
           value={ytUrl}
           onChange={(e) => setYtUrl(e.target.value)}
         ></input>
-        <button className="border-2 border-black" onClick={handleSubmit}>Summarize</button>
+        <button
+          className="border bg-black rounded text-white p-1 mt-4"
+          onClick={handleSubmit}
+        >
+          Summarize
+        </button>
       </div>
     </main>
   );
