@@ -35,10 +35,10 @@ const handleSubmit = async () => {
       }}
     >
       <Toaster />
-      <div className="flex flex-col justify-center items-center pt-10">
+      <header className="flex flex-col justify-center items-center pt-10">
         <Image src="logo.svg" width={50} height={50} alt="logo"></Image>
         <h1 className="font-bold text-2xl">VideoBriefs</h1>
-      </div>
+      </header>
       <div className="text-center flex flex-col flex-1 pt-32 items-center">
         <h1 className="font-bold text-5xl lg:text-7xl lg:px-10">
           Don't Want to Watch the Whole Video? - Try VideoBriefs!
