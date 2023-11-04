@@ -33,8 +33,10 @@ export async function POST(req: NextRequest) {
     let res = null;
     if (messageContent) {
       try {
+        console.log(messageContent);
         res = JSON.parse(messageContent);
-      } catch (error) {
+        console.log(res);
+      } catch (error: any) {
         return NextResponse.json(
           { message: "Invalid response from OpenAI" },
           { status: 500 }
