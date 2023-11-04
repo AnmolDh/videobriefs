@@ -9,14 +9,20 @@ export default function Home() {
   const router = useRouter();
   const [ytUrl, setYtUrl] = useState("");
 
-  const handleSubmit = async () => {
-    try {
-      const videoId = ytUrl?.split("v=")[1];
-      router.push(`/summarize?videoId=${videoId}`);
-    } catch (error: any) {
-      toast.error("Something Went Wrong!");
+const handleSubmit = async () => {
+  try {
+    let videoId = "";
+    if (ytUrl.includes("youtu.be")) {
+      videoId = ytUrl.split("youtu.be/")[1].split("?")[0];
+      console.log(ytUrl.split("youtu.be/"))
+    } else {
+      videoId = ytUrl.split("v=")[1];
     }
-  };
+    router.push(`/summarize?videoId=${videoId}`);
+  } catch (error: any) {
+    toast.error("Something Went Wrong!");
+  }
+};
 
   return (
     <main
@@ -40,14 +46,14 @@ export default function Home() {
         </h1>
         <input
           type="text"
-          className="border bg-black rounded text-white text-xl p-2 mt-14 text-center"
+          className="border bg-black rounded-3xl text-white text-xl p-2 mt-14 text-center w-full sm:w-3/4 md:w-1/2 lg:w-1/3"
           placeholder="YouTube URL"
           name="url"
           value={ytUrl}
           onChange={(e) => setYtUrl(e.target.value)}
         ></input>
         <button
-          className="border bg-black rounded text-white p-1 mt-4"
+          className="border bg-black rounded-2xl text-white p-1.5 mt-4"
           onClick={handleSubmit}
         >
           Summarize
