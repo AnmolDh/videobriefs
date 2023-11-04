@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import Image from "next/image";
 
 export default function Home() {
   const router = useRouter();
@@ -30,7 +31,7 @@ export default function Home() {
     >
       <Toaster />
       <div className="flex flex-col justify-center items-center pt-10">
-        <img src="logo.svg" width={50} alt="logo"></img>
+        <Image src="logo.svg" width={50} height={50} alt="logo"></Image>
         <h1 className="font-bold text-2xl">VideoBriefs</h1>
       </div>
       <div className="text-center flex flex-col flex-1 pt-32 items-center">
