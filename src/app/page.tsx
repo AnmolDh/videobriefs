@@ -1,15 +1,16 @@
 "use client";
 
-import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Home() {
+  const router = useRouter();
   const [ytUrl, setYtUrl] = useState("");
 
   const handleSubmit = async () => {
     try {
-      await axios.post("/api/summarizer", { ytUrl });
+      router.push(`/summarize?ytUrl=${ytUrl}`);
     } catch (error: any) {
       toast.error("Something Went Wrong!");
     }
@@ -26,6 +27,7 @@ export default function Home() {
         backgroundColor: "white",
       }}
     >
+      <Toaster/>
       <div className="flex flex-col justify-center items-center pt-10">
         <img src="logo.svg" width={50}></img>
         <h1 className="font-bold text-2xl">VideoBriefs</h1>
