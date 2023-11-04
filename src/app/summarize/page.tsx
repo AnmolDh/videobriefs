@@ -54,9 +54,9 @@ export default function SummarizePage() {
                 {data.title || ""}
               </h1>
               <ul>
-                {data.summary.map((e) => {
+                {data.summary.map((e, i) => {
                   return (
-                    <li className="list-disc text-left pb-2 text-lg font-medium">
+                    <li key={i} className="list-disc text-left pb-2 text-lg font-medium">
                       {e}
                     </li>
                   );
