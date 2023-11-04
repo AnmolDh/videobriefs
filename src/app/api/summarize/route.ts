@@ -5,12 +5,11 @@ import OpenAI from "openai";
 export async function POST(req: NextRequest) {
   try {
     const reqBody = await req.json();
-    const { videoId } = reqBody;
+    const { videoId, inDepth, bullets } = reqBody;
 
     const youtube = new Client();
     const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY || "" });
 
-    const video = await youtube.getVideo(videoId);
     const tsData = await youtube.getVideoTranscript(videoId);
 
     let ts = "";
@@ -18,22 +17,21 @@ export async function POST(req: NextRequest) {
       ts += item.text + " ";
     });
 
-    return NextResponse.json(
-      { title: video?.title, summary: ts },
-      { status: 200 }
-    );
+    const completion = await openai.chat.completions.create({
+      messages: [
+        {
+          role: "user",
+          content: `${ts} summarize this youtube video transcript ${
+            inDepth ? "in deep depth" : ""
+          }. Respond with JSON Object with title and summary (array of points) key.`,
+        },
+      ],
+      model: "gpt-3.5-turbo",
+    });
 
-    // const completion = await openai.chat.completions.create({
-    //   messages: [
-    //     {
-    //       role: "user",
-    //       content: `${ts} summarize this youtube video transcript`,
-    //     },
-    //   ],
-    //   model: "gpt-3.5-turbo",
-    // });
+    const res = JSON.parse(completion.choices[0].message.content || "");
 
-    // return NextResponse.json({ summary: completion.choices[0].message.content }, {status: 200});
+    return NextResponse.json(res, { status: 200 });
   } catch (error: any) {
     return NextResponse.json({ message: error.message }, { status: 500 });
   }

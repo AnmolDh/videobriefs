@@ -8,7 +8,10 @@ import { ClipLoader } from "react-spinners";
 
 export default function SummarizePage() {
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState({ title: "", summary: "" });
+  const [data, setData] = useState({
+    title: "",
+    summary: []
+  });
 
   useEffect(() => {
     toast.success("Summarizing...");
@@ -47,8 +50,18 @@ export default function SummarizePage() {
             </div>
           ) : (
             <div>
-              <h1 className="text-4xl font-bold pb-10">{data.title}</h1>
-              <h1>{data.summary}</h1>
+              <h1 className="text-4xl font-bold pb-10 text-left">
+                {data.title || ""}
+              </h1>
+              <ul>
+                {data.summary.map((e) => {
+                  return (
+                    <li className="list-disc text-left pb-2 text-lg font-medium">
+                      {e}
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
           )}
         </div>
