@@ -17,8 +17,10 @@ export default function summarizePage() {
     };
     getSummary();
   }, []);
-  return <div>
-    <Toaster/>
-    <h1>{ summary ? summary : "please wait" }</h1>
-  </div>;
+  return (
+    <main className="min-h-screen">
+      <Toaster />
+      <h1>{summary ? summary : "please wait"}</h1>
+    </main>
+  );
 }
