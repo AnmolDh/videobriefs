@@ -59,7 +59,7 @@ export default function SummarizePage() {
       >
         <header className="flex flex-col justify-center items-center pt-10">
           <Image src="logo.svg" width={50} height={50} alt="logo" />
-          <h1 className="font-bold text-2xl">VideoBriefs</h1>
+          <div className="font-bold text-2xl">VideoBriefs</div>
         </header>
         <div className="text-center flex flex-col pt-16 items-center px-6 lg:px-32">
           {loading ? (
