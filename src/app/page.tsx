@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import Image from "next/image";
+import validateUrl from "@/helpers/validateUrl";
 
 export default function Home() {
   const router = useRouter();
@@ -16,15 +17,10 @@ export default function Home() {
   const handleSubmit = async () => {
     try {
       const { ytUrl } = formData;
-      if (!ytUrl.includes("youtube") && !ytUrl.includes("youtu.be")) {
+      const videoId = validateUrl(ytUrl);
+      if (!videoId) {
         toast.error("Invalid YouTube URL!");
         return;
-      }
-      let videoId = "";
-      if (ytUrl.includes("youtu.be")) {
-        videoId = ytUrl.split("youtu.be/")[1].split("?")[0];
-      } else {
-        videoId = ytUrl.split("v=")[1];
       }
       router.push(
         `/summarize?videoId=${videoId}&inDepth=${formData.inDepth}&bullets=${formData.bullets}`
@@ -49,7 +45,7 @@ export default function Home() {
       >
         <header className="flex flex-col justify-center items-center pt-10">
           <Image src="logo.svg" width={50} height={50} alt="logo"></Image>
-          <div className="font-bold text-2xl">VideoBriefs</div>
+          <title className="font-bold text-2xl">VideoBriefs</title>
         </header>
         <div className="text-center flex flex-col flex-1 pt-32 items-center">
           <h1 className="font-bold text-5xl lg:text-7xl lg:px-10">

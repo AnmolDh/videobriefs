@@ -1,5 +1,6 @@
 "use client";
 
+import streamData from "@/helpers/streamData";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
@@ -32,18 +33,8 @@ export default function SummarizePage() {
       if (!res.body) {
         throw new Error("Response body is null");
       }
-      const reader = res.body.getReader();
-      const decoder = new TextDecoder();
-      let done = false;
 
-      while (!done) {
-        const { value, done: doneReading } = await reader.read();
-        done = doneReading;
-        if (value) {
-          const chunkValue = decoder.decode(value);
-          setSummary((prev) => prev + chunkValue);
-        }
-      }
+      await streamData(res, setSummary);
     };
     getData();
   }, []);
@@ -59,7 +50,7 @@ export default function SummarizePage() {
       >
         <header className="flex flex-col justify-center items-center pt-10">
           <Image src="logo.svg" width={50} height={50} alt="logo" />
-          <div className="font-bold text-2xl">VideoBriefs</div>
+          <title className="font-bold text-2xl">VideoBriefs</title>
         </header>
         <div className="text-center flex flex-col pt-16 items-center px-6 lg:px-32">
           {loading ? (
