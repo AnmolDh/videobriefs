@@ -8,8 +8,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "VideoBriefs - Summarize YouTube Videos in Just One Click!",
   description:
-    "Get concise summaries of YouTube videos quickly with VideoBriefs.",
-  keywords: "YouTube, video summaries, online video, productivity",
+    "Experience seamless YouTube video summaries with VideoBriefs! Elevate productivity and knowledge with our one-click solution. Unlock concise insights effortlessly—your gateway to efficient content consumption and enhanced online video engagement.",
+  keywords:
+    "YouTube, video summaries, online video, productivity, one-click video insights, efficient content consumption, concise video summaries, enhance online engagement, quick video digestion, YouTube productivity tool",
   robots: "index, follow",
 };
 
