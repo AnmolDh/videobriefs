@@ -5,6 +5,7 @@ import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import Image from "next/image";
 import validateUrl from "@/helpers/validateUrl";
+import NProgress from "nprogress";
 
 export default function Home() {
   const router = useRouter();
@@ -16,6 +17,7 @@ export default function Home() {
 
   const handleSubmit = async () => {
     try {
+      NProgress.start();
       const { ytUrl } = formData;
       const videoId = validateUrl(ytUrl);
       if (!videoId) {
@@ -25,7 +27,9 @@ export default function Home() {
       router.push(
         `/summarize?videoId=${videoId}&inDepth=${formData.inDepth}&bullets=${formData.bullets}`
       );
+      NProgress.done();
     } catch (error: any) {
+      NProgress.done();
       toast.error("Something Went Wrong!");
     }
   };
@@ -69,30 +73,6 @@ export default function Home() {
               }
             ></input>
             <div className="my-1">
-              <style jsx>{`
-                .checkbox {
-                  appearance: none;
-                  -webkit-appearance: none;
-                  width: 20px;
-                  height: 20px;
-                  background: white;
-                  border: 2px solid black;
-                  border-radius: 4px;
-                  position: relative;
-                  vertical-align: middle;
-                }
-                .checkbox:checked {
-                  background: black;
-                }
-                .checkbox:checked::after {
-                  content: "✔";
-                  color: white;
-                  position: absolute;
-                  top: 50%;
-                  left: 50%;
-                  transform: translate(-50%, -50%);
-                }
-              `}</style>
               <label className="mx-2">
                 <input
                   className="checkbox"
