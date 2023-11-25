@@ -1,18 +1,36 @@
-import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import GoogleAnalytics from "@/helpers/googleAnalytics";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "VideoBriefs - Summarize YouTube Videos in Just One Click!",
+export const metadata: Record<string, string> = {
+  title: "VideoBriefs - Free AI-Powered YouTube Video Summaries",
   description:
-    "Experience seamless YouTube video summaries with VideoBriefs! Elevate productivity and knowledge with our one-click solution. Unlock concise insights effortlessly—your gateway to efficient content consumption and enhanced online video engagement.",
+    "Summarize YouTube videos for free with our AI-powered YouTube Summarizer. Identify important ideas and facts effortlessly. Try it now!",
   keywords:
-    "YouTube, video summaries, online video, productivity, one-click video insights, efficient content consumption, concise video summaries, enhance online engagement, quick video digestion, YouTube productivity tool",
-  robots: "index, follow",
+    "YouTube summarizer, video summary, AI-powered summaries, YouTube video analysis, free video summarization tool, online video summaries, efficient content consumption, concise video insights, enhance online engagement, quick video digestion, productivity tool",
+  author: "Anmol Dhiman",
+  publisher: "VideoBriefs",
+  language: "English",
+  category: "Technology",
+  pageType: "Website",
+  audience: "Global",
+  geographicLocation: "Worldwide",
+  rating: "General",
+  coverage: "Worldwide",
+  distribution: "Global",
+  ogTitle: "YouTube Summarizer - Free AI-Powered Video Summaries",
+  ogDescription:
+    "Summarize YouTube videos for free with our AI-powered YouTube Summarizer. Identify important ideas and facts effortlessly. Try it now!",
+  ogImage: "https://videobriefs.hidethepain.live/og-image.png",
+  ogUrl: "https://videobriefs.hidethepain.live",
+  twitterTitle: "YouTube Summarizer - Free AI-Powered Video Summaries",
+  twitterDescription:
+    "Summarize YouTube videos for free with our AI-powered YouTube Summarizer. Identify important ideas and facts effortlessly. Try it now!",
+  twitterImage: "https://videobriefs.hidethepain.live/og-image.png",
 };
+
 
 export default function RootLayout({
   children,

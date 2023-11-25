@@ -22,6 +22,7 @@ export default function Home() {
       const videoId = validateUrl(ytUrl);
       if (!videoId) {
         toast.error("Invalid YouTube URL!");
+        NProgress.done();
         return;
       }
       router.push(
@@ -49,7 +50,7 @@ export default function Home() {
       >
         <header className="flex flex-col justify-center items-center pt-10">
           <Image src="logo.svg" width={50} height={50} alt="logo"></Image>
-          <title className="font-bold text-2xl">VideoBriefs</title>
+          <h1 className="font-bold text-2xl">VideoBriefs</h1>
         </header>
         <div className="text-center flex flex-col flex-1 pt-32 items-center">
           <h1 className="font-bold text-5xl lg:text-7xl lg:px-10">

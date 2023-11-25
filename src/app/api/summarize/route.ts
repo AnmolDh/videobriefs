@@ -12,14 +12,20 @@ export async function POST(req: Request) {
   const { videoId, inDepth, bullets } = await req.json();
 
   let ts = await getTranscript(videoId);
-  const prompt = `${ts}. summarize this youtube video transcript ${
-    inDepth ? "in deep depth" : ""
+  const prompt = `${ts}
   }.`;
 
   const response = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
+
     stream: true,
     messages: [
+      {
+        role: "assistant",
+        content: `summarize this youtube video transcript ${
+          inDepth ? "in deep depth" : ""
+        }.`,
+      },
       {
         role: "user",
         content: prompt,
