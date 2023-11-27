@@ -12,26 +12,24 @@ export async function POST(req: Request) {
   const { videoId, inDepth, bullets } = await req.json();
 
   let ts = await getTranscript(videoId);
-  const prompt = `${ts}
-  }.`;
+  const prompt = `${ts}`;
 
   const response = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
-
     stream: true,
     messages: [
       {
         role: "assistant",
         content: `summarize this youtube video transcript ${
           inDepth ? "in deep depth" : ""
-        }.`,
+        }. ${bullets ? "Give me bullet points(start point with '\n')" : ""}`,
       },
       {
         role: "user",
         content: prompt,
       },
     ],
-    max_tokens: 200,
+    max_tokens: 50,
     temperature: 0,
     top_p: 1,
     frequency_penalty: 1,

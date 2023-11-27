@@ -14,8 +14,8 @@ export default function SummarizePage() {
     toast.success("Summarizing...");
     const urlParams = new URLSearchParams(window.location.search);
     const videoId = urlParams.get("videoId");
-    const inDepth = urlParams.get("inDepth");
-    const bullets = urlParams.get("bullets");
+    const inDepth = urlParams.get("inDepth") === "true";
+    const bullets = urlParams.get("bullets") === "true";
     const getData = async () => {
       const res = await fetch("/api/summarize", {
         method: "POST",
@@ -28,13 +28,11 @@ export default function SummarizePage() {
           bullets,
         }),
       });
-      setLoading(false)
-
+      setLoading(false);
       if (!res.body) {
         throw new Error("Response body is null");
       }
-
-      await streamData(res, setSummary);
+      await streamData(res, setSummary, bullets);
     };
     getData();
   }, []);
@@ -60,7 +58,11 @@ export default function SummarizePage() {
           ) : (
             <div>
               <h1 className="pb-10 text-left">
-                {summary ? summary : "No Summary Found"}
+                {summary ? (
+                  <div dangerouslySetInnerHTML={{ __html: summary }} />
+                ) : (
+                  "NO SUMMARY FOUND, I GUESS, PLEASE WAIT..."
+                )}
               </h1>
             </div>
           )}
