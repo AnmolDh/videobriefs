@@ -29,7 +29,7 @@ export async function POST(req: Request) {
         content: prompt,
       },
     ],
-    max_tokens: 50,
+    max_tokens: 300,
     temperature: 0,
     top_p: 1,
     frequency_penalty: 1,
