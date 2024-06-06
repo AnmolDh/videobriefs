@@ -6,6 +6,8 @@
 
 VideoBriefs is a powerful web application that leverages the OpenAI API to simplify and enhance your YouTube video consumption experience. Built with Next.js, VideoBriefs allows users to quickly generate concise summaries of YouTube videos with just one click. Say goodbye to long-winded videos and hello to instant knowledge.
 
+<img src="screenshot.png">
+
 ## Features
 
 - **Summarize Videos:** Extract key insights and highlights from YouTube videos effortlessly.
